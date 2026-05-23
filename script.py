@@ -6,8 +6,6 @@ from pygame import Rect
 from pygame.math import Vector2
 score = 0
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 class GameState():
     def __init__(self):
         self.x = 120
@@ -28,7 +26,6 @@ class Interface():
         pygame.init()
 
         self.gameState = GameState()
-        self.cellSize = Vector2(64, 64)
         self.unitsTexture = pygame.image.load("sprite.jpg")
 
         self.window = pygame.display.set_mode((640,480))
@@ -37,14 +34,6 @@ class Interface():
         self.disp_color = (50,50,50)
         self.circle_color = (230,0,230)
         self.running = True
-
-    def render1(self):
-        self.window.fill((50, 50,50))
-
-        spritePoint = self.gameState.spritePos.elementwise() * self.cellSize
-        texturePoint = Vector2(1, 0).elementwise() * self.cellSize
-        textureRect = Rect(int(texturePoint.x), int(texturePoint.y), int(self.cellSize.x), int(self.cellSize.y))
-        self.window.blit(self.unitsTexture, spritePoint, textureRect)
 
         pygame.display.update()
     def processInput(self, score=None):
@@ -77,11 +66,6 @@ class Interface():
             self.render()
             self.clock.tick(5)
 circles = []
-unitsTexture = pygame.image.load("sprite.jpg")
-window = pygame.display.set_mode((256,256))
-location = pygame.math.Vector2(96, 96)
-rectangle = pygame.Rect(64, 0, 64, 64)
-window.blit(unitsTexture,location,rectangle)
 game = Interface()
 game.run()
 pygame.quit()
